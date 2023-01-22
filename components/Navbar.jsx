@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { isMobile } from 'web3modal';
+// import { isMobile } from 'web3modal';
 import { NFTContext } from '../context/NFTContext';
 import images from '../assets';
+// eslint-disable-next-line import/no-cycle
 import { Button } from '.';
 
 const MenuItems = ({ isMobile, active, setActive }) => {

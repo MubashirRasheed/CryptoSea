@@ -5,8 +5,8 @@ import axios from 'axios';
 import { NFTContext } from '../context/NFTContext';
 import { Input, Loader, Button } from '../components';
 
-import images from '../assets';
-import { shortenAddress } from '../utils/shortenAddress';
+// import images from '../assets';
+// import { shortenAddress } from '../utils/shortenAddress';
 
 const ResellNFT = () => {
   const { createSale } = useContext(NFTContext);
