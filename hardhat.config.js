@@ -1,12 +1,13 @@
-const fs = require('fs');
+require('dotenv').config({path:__dirname+'/.env.local'})
 // const { env } = require('process');
+const { NEXT_PUBLIC_ALCHEMY_API_ENDPOINT, NEXT_PUBLIC_ACCOUNT_SECRET_KEY } = process.env;
 
-require('@nomiclabs/hardhat-waffle');
+import '@nomiclabs/hardhat-waffle';
 
-const privateKey0 = fs.readFileSync('.secret').toString().trim();
+
 
 // eslint-disable-next-line no-undef
-const privateKey = 'c68a26197c9c4c1b761d4fa24d0b1de43d96196685af9393a460a14a9468bc70';
+
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -20,13 +21,11 @@ const privateKey = 'c68a26197c9c4c1b761d4fa24d0b1de43d96196685af9393a460a14a9468
 //   solidity: '0.8.4',
 // };
 
-module.exports = {
-  networks: {
-    goerli: {
-      url: 'https://eth-goerli.g.alchemy.com/v2/x76uPc1xwSSrSv6ATYVU3ccja_AwMh6r',
-      accounts: [privateKey],
-    },
+export const networks = {
+  goerli: {
+    url: `${NEXT_PUBLIC_ALCHEMY_API_ENDPOINT}`,
+    accounts: [`${NEXT_PUBLIC_ACCOUNT_SECRET_KEY}`],
   },
-  solidity: '0.8.4',
 };
+export const solidity = '0.8.4';
 

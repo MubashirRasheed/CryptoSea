@@ -5,9 +5,10 @@ import { Banner, CreatorCard, Loader, NFTCard, SearchBar } from '../components';
 
 import { NFTContext } from '../context/NFTContext';
 import images from '../assets';
-import { makeId } from '../utils/makeId';
+// import { makeId } from '../utils/makeId';
 import { getCreators } from '../utils/getTopCreators';
 import { shortenAddress } from '../utils/shortenAddress';
+
 
 const Home = () => {
   const { fetchNFTs } = useContext(NFTContext);

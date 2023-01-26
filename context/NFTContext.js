@@ -72,6 +72,7 @@ export const NFTProvider = ({ children }) => {
       const added = await Client.add(data);
 
       const url = `${subdomain}/ipfs/${added.path}`;
+      // eslint-disable-next-line no-use-before-define
       await createSale(url, price);
       router.push('/');
     } catch (error) {
