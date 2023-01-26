@@ -34,3 +34,6 @@ typechain
 #Hardhat files
 cache
 artifacts
+
+#Eslintrc
+.eslintrc.js
