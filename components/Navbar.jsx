@@ -156,7 +156,7 @@ const Navbar = () => {
 
           <MenuItems active={active} setActive={setActive} />
           <div className="ml-4">
-            <ButtonGroup setActive={setActive} router={router} />
+            <ButtonGroup setActive={setActive} router={router} setIsOpen={setIsOpen}/>
 
           </div>
         </div>

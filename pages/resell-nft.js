@@ -9,13 +9,13 @@ import { Input, Loader, Button } from '../components';
 // import { shortenAddress } from '../utils/shortenAddress';
 
 const ResellNFT = () => {
-  const { createSale } = useContext(NFTContext);
+  const { createSale ,isLoadingNFT} = useContext(NFTContext);
   const router = useRouter();
   const { tokenId, tokenURI } = router.query;
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
 
-  const [isLoading, setIsLoading] = useState(true);
+  
 
   const fetchNFT = async () => {
     const { data } = await axios.get(tokenURI);
@@ -35,7 +35,7 @@ const ResellNFT = () => {
     router.push('/');
   };
 
-  if (isLoading) {
+  if (isLoadingNFT) {
     return (
       <div className="flex-start min-h-screen">
         <Loader />

@@ -25,6 +25,7 @@ export const NFTContext = React.createContext();
 
 export const NFTProvider = ({ children }) => {
   const [currentAccount, setcurrentAccount] = useState('');
+  const [isLoadingNFT, setIsLoadingNFT] = useState(false)
   const nftCurrency = 'ETH';
 
   const checkIfWalletIsConnected = async () => {
@@ -95,11 +96,13 @@ export const NFTProvider = ({ children }) => {
     const transaction = !isReselling ? await contract.createToken(url, price, { value: listingPrice.toString() })
       : await contract.resellToken(id, price, { value: listingPrice.toString() });
 
+      setIsLoadingNFT(true)
     await transaction.wait();
   };
 
   const fetchNFTs = async () => {
     try {
+      setIsLoadingNFT(false)
       const provider = new ethers.providers.JsonRpcProvider('https://eth-goerli.g.alchemy.com/v2/x76uPc1xwSSrSv6ATYVU3ccja_AwMh6r');
       const contract = fetchContract(provider);
       const data = await contract.fetchMarketItems();
@@ -129,6 +132,7 @@ export const NFTProvider = ({ children }) => {
   };
 
   const fetchMyNFTsOrListedNFTs = async (type) => {
+    setIsLoadingNFT(false)
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
@@ -171,12 +175,13 @@ export const NFTProvider = ({ children }) => {
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether');
 
     const transaction = await contract.createMarketSale(nft.tokenId, { value: price });
-
+    setIsLoadingNFT(true)
     await transaction.wait();
+    setIsLoadingNFT(false)
   };
 
   return (
-    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs, fetchMyNFTsOrListedNFTs, buyNFT, createSale }}>
+    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs, fetchMyNFTsOrListedNFTs, buyNFT, createSale,isLoadingNFT }}>
       {children}
     </NFTContext.Provider>
   );
