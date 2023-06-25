@@ -33,7 +33,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex-1 flexBetweenStart flex-wrap ml-10 md:ml-0 md:mt-8">
-          <FooterLinks heading="CrypoKet" items={['Explore', 'How it works', 'Contact Us']} />
+          <FooterLinks heading="CryptoSea" items={['Explore', 'How it works', 'Contact Us']} />
           <FooterLinks heading="Support" items={['Help Center', 'Terms of Service', 'Legal', 'Privacy Policy']} />
         </div>
       </div>
